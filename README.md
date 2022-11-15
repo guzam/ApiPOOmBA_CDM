@@ -1,8 +1,11 @@
 # ApiPOOmBA_CDM
 Api para app de preguntas y respuestas, proyecto integrador final de la materia Desarrollo Mobile.
 
-1- Ejecutar el script que se encuentra en:
-_DB_SCRIPT/DEPOOmBA01.Database.sql 
+1- Ejecutar los scripts que se encuentran en _DB_SCRIPT:
+01_scrip_db_y_tablas.sql
+02_scrip_insert_datos.sql
+03_scrip_constraints.sql
+
 El mismo crea la db local para que la api funcione.
 
 2- Abrir el proyecto ApiPOOmBA
