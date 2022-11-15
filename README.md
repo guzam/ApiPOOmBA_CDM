@@ -5,7 +5,9 @@ Api para app de preguntas y respuestas, proyecto integrador final de la materia 
 Requerimientos: 
 
 Visual Studio con .Net Framework 4.8
+
 SQL Server con localdb.
+
 -----------------------------------------------------------------------------------------------------
 1- Ejecutar los scripts que se encuentran en _DB_SCRIPT:
 
