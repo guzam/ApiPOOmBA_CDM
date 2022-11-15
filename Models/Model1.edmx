@@ -1,0 +1,220 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DEPOOmBA01Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pregunta">
+          <Key>
+            <PropertyRef Name="idPregunta" />
+          </Key>
+          <Property Name="idPregunta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nroPregunta" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="400" />
+        </EntityType>
+        <EntityType Name="PreguntaSecreta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="pregunta" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="respuesta" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Respuesta">
+          <Key>
+            <PropertyRef Name="idRespuesta" />
+          </Key>
+          <Property Name="idRespuesta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="300" Nullable="false" />
+          <Property Name="esCorrecta" Type="bit" Nullable="false" />
+          <Property Name="idPregunta" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="idEstado" Type="int" Nullable="false" />
+          <Property Name="idPregunta" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Respuesta_Pregunta">
+          <End Role="Pregunta" Type="Self.Pregunta" Multiplicity="1" />
+          <End Role="Respuesta" Type="Self.Respuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pregunta">
+              <PropertyRef Name="idPregunta" />
+            </Principal>
+            <Dependent Role="Respuesta">
+              <PropertyRef Name="idPregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DEPOOmBA01ModelStoreContainer">
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pregunta" EntityType="Self.Pregunta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PreguntaSecreta" EntityType="Self.PreguntaSecreta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Respuesta" EntityType="Self.Respuesta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Respuesta_Pregunta" Association="Self.FK_Respuesta_Pregunta">
+            <End Role="Pregunta" EntitySet="Pregunta" />
+            <End Role="Respuesta" EntitySet="Respuesta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DEPOOmBA01Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DEPOOmBA01Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Estado" EntityType="DEPOOmBA01Model.Estado" />
+          <EntitySet Name="Pregunta" EntityType="DEPOOmBA01Model.Pregunta" />
+          <EntitySet Name="PreguntaSecreta" EntityType="DEPOOmBA01Model.PreguntaSecreta" />
+          <EntitySet Name="Respuesta" EntityType="DEPOOmBA01Model.Respuesta" />
+          <EntitySet Name="Usuario" EntityType="DEPOOmBA01Model.Usuario" />
+          <AssociationSet Name="FK_Respuesta_Pregunta" Association="DEPOOmBA01Model.FK_Respuesta_Pregunta">
+            <End Role="Pregunta" EntitySet="Pregunta" />
+            <End Role="Respuesta" EntitySet="Respuesta" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Pregunta">
+          <Key>
+            <PropertyRef Name="idPregunta" />
+          </Key>
+          <Property Name="idPregunta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nroPregunta" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="400" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Respuesta" Relationship="DEPOOmBA01Model.FK_Respuesta_Pregunta" FromRole="Pregunta" ToRole="Respuesta" />
+        </EntityType>
+        <EntityType Name="PreguntaSecreta">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="pregunta" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="respuesta" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Respuesta">
+          <Key>
+            <PropertyRef Name="idRespuesta" />
+          </Key>
+          <Property Name="idRespuesta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="esCorrecta" Type="Boolean" Nullable="false" />
+          <Property Name="idPregunta" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pregunta" Relationship="DEPOOmBA01Model.FK_Respuesta_Pregunta" FromRole="Respuesta" ToRole="Pregunta" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="idEstado" Type="Int32" Nullable="false" />
+          <Property Name="idPregunta" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Respuesta_Pregunta">
+          <End Type="DEPOOmBA01Model.Pregunta" Role="Pregunta" Multiplicity="1" />
+          <End Type="DEPOOmBA01Model.Respuesta" Role="Respuesta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pregunta">
+              <PropertyRef Name="idPregunta" />
+            </Principal>
+            <Dependent Role="Respuesta">
+              <PropertyRef Name="idPregunta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DEPOOmBA01ModelStoreContainer" CdmEntityContainer="DEPOOmBA01Entities">
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="DEPOOmBA01Model.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pregunta">
+            <EntityTypeMapping TypeName="DEPOOmBA01Model.Pregunta">
+              <MappingFragment StoreEntitySet="Pregunta">
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="nroPregunta" ColumnName="nroPregunta" />
+                <ScalarProperty Name="idPregunta" ColumnName="idPregunta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PreguntaSecreta">
+            <EntityTypeMapping TypeName="DEPOOmBA01Model.PreguntaSecreta">
+              <MappingFragment StoreEntitySet="PreguntaSecreta">
+                <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+                <ScalarProperty Name="pregunta" ColumnName="pregunta" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Respuesta">
+            <EntityTypeMapping TypeName="DEPOOmBA01Model.Respuesta">
+              <MappingFragment StoreEntitySet="Respuesta">
+                <ScalarProperty Name="idPregunta" ColumnName="idPregunta" />
+                <ScalarProperty Name="esCorrecta" ColumnName="esCorrecta" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idRespuesta" ColumnName="idRespuesta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="DEPOOmBA01Model.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idPregunta" ColumnName="idPregunta" />
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="user" ColumnName="user" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
