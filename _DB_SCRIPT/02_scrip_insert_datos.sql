@@ -887,6 +887,6 @@ INSERT [dbo].[Usuario] ([id], [user], [password], [idEstado], [idPregunta]) VALU
 INSERT [dbo].[Usuario] ([id], [user], [password], [idEstado], [idPregunta]) VALUES (2, N'lmpaiva', N'1234', 1, 0)
 INSERT [dbo].[Usuario] ([id], [user], [password], [idEstado], [idPregunta]) VALUES (3, N'mnieto', N'1234', 1, 0)
 INSERT [dbo].[Usuario] ([id], [user], [password], [idEstado], [idPregunta]) VALUES (4, N'gzammataro', N'1234', 1, 0)
-INSERT [dbo].[Usuario] ([id], [user], [password], [idEstado], [idPregunta]) VALUES (4, N'vdangela', N'1234', 1, 0)
+INSERT [dbo].[Usuario] ([id], [user], [password], [idEstado], [idPregunta]) VALUES (5, N'vdangela', N'1234', 1, 0)
 SET IDENTITY_INSERT [dbo].[Usuario] OFF
 GO
